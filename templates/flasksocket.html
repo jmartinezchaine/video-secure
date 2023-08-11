@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Flask Client Camera Web App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}">
+    <style>
+     #video {
+      transform: rotateY(180deg);
+      -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+      -moz-transform:rotateY(180deg); /* Firefox */
+
+     }
+    </style>
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"></script>
+</head>
+
+<body>
+
+<div id="container">
+    <video autoplay playsinline id="videoElement"></video>
+    <canvas id="canvas" width="410" height="310"></canvas>
+</div>
+
+<div class= 'video'>
+    <img id="photo" width="410" height="310">
+</div>
+
+<div class= 'video'>
+    <img id="photo_ia" width="410" height="310">
+</div>
+<script src="{{ url_for('static', filename='./assets/js/script.js') }}"></script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Camaras</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href=" {{ static_url('assets/css/main.css') }}">
+  <noscript><link rel="stylesheet" href="{{ static_url('assets/css/noscript.css') }}"></noscript>
+</head>
+<body class="is-preload-0 is-preload-1 is-preload-2">
+
+<!-- Main -->
+<div id="main">
+
+  <!-- Header -->
+  <header id="header">
+    <h1>Mis Camaras</h1>
+    <p>Es lo que hay valor</p>
+    <ul class="icons">
+      <li><a href="http://192.168.1.26/xclk?xclk=10" target="_blank" >Set CCLK to 10 MHz</a></li>
+      <li><a href="http://192.168.1.26/control?var=framesize&val=8" target="_blank" >Resolution: VGA(640x480)</a></li>
+      <li><a href="http://192.168.1.26/control?var=framesize&val=5" target="_blank" >Resolution: QVGA(320x240)</a></li>
+
+    </ul>
+  </header>
+
+  <!-- Thumbnail -->
+  <section id="thumbnails">
+
+    <article>
+      <a class="thumbnail" href="{{ url }}" data-position="left center">
+        <img src=" {{ static_url('images/thumbs/01.jpg') }}" alt="" />
+      </a>
+      <img src="{{ photo }}">
+      <!--ul>
+     {% for deviceId in deviceIds %}
+       <h2>{{ deviceId }}</h2>
+       <img src="{{url + deviceId}}">
+     {% end %}
+   </ul-->
+      <h2>Camara 1</h2>
+      <p>Es la camara un, como te dije arriba :)/p>
+    </article>
+  </section>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <ul class="copyright">
+      <li>&copy; :)</li><li>Design: Yoni</li>
+    </ul>
+  </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="static/assets/js/jquery.min.js"></script>
+<script src="static/assets/js/browser.min.js"></script>
+<script src="static/assets/js/breakpoints.min.js"></script>
+<script src="static/assets/js/main.js"></script>
+
+
+  </body>
+</html>

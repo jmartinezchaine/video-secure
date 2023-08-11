@@ -11,18 +11,18 @@ from telegram import chat
 import time
 import atexit
 
-ultralytics.checks()
+#ultralytics.checks()
 print(f"Iniciando YOLO, si el valor es False se utilizará CPU, si es TRUE usara GPU:  ", torch.cuda.is_available())
 client = chat.createClient()
 yolo_list = ['person', 'cat', 'dog', 'car', 'motorbike', 'bicycle']
 yolo_on = True
-modelo = 'yolov8s' #nano model
+modelo = 'yolov8n' #nano model
 testing = False
 thresh = 3000 #Determines the amount of motion required to start recording. Higher values decrease sensitivity to help reduce false positives. Default 350, max 10000."
-tail_length = 3 # Number of seconds without motion required to stop recording. Raise this value if recordings are stopping too early. Default 8, max 30.
+tail_length = 8 # Number of seconds without motion required to stop recording. Raise this value if recordings are stopping too early. Default 8, max 30.
 auto_delete = True
 fps = 10
-start_frames =2# entre 1 y 30  Number of consecutive frames with motion required to start recording. Raising this might help if there's too many false positive recordings, especially with a high frame rate stream of 60 FPS. Default 3, max 30.
+start_frames = 3# entre 1 y 30  Number of consecutive frames with motion required to start recording. Raising this might help if there's too many false positive recordings, especially with a high frame rate stream of 60 FPS. Default 3, max 30.
 recording = False
 activity_count = 0
 yolo_count = 0

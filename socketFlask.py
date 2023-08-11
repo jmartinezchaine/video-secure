@@ -15,7 +15,6 @@ logging.getLogger('engineio').setLevel(logging.ERROR)
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "esto_es_un_secreto"
 socketio = SocketIO(app)
-yolo_on = True
 
 @app.route("/favicon.ico")
 def favicon():
@@ -99,4 +98,4 @@ def index():
     return render_template("flasksocket.html")
 
 if __name__ == "__main__":
-    socketio.run(app, debug=False, port=5000, host='0.0.0.0', allow_unsafe_werkzeug=True)
+    socketio.run(app, debug=False, port=5000, host='0.0.0.0', allow_unsafe_werkzeug=True, keyfile='key.pem', certfile='cert.pem')

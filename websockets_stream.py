@@ -1,5 +1,4 @@
 import logging
-
 import tornado.httpserver
 import tornado.websocket
 import tornado.concurrent

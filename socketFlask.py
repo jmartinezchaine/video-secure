@@ -7,6 +7,10 @@ import numpy as np
 from flask import Flask, render_template, send_from_directory
 from flask_socketio import SocketIO, emit
 from yolo import yololo
+import logging
+
+logging.getLogger('socketio').setLevel(logging.ERROR)
+logging.getLogger('engineio').setLevel(logging.ERROR)
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "esto_es_un_secreto"

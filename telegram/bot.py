@@ -22,6 +22,14 @@ bot = telebot.TeleBot(BOT_TOKEN)
 def send_welcome(message):
     bot.reply_to(message, "Guenas, tudu bom bom?")
 
+@bot.message_handler(commands=['foto'])
+def sign_handler(message):
+    # obtener la foto actual de la camara
+
+    bot.reply_to(message, "Acá tenes una fotito real time :) ")
+
+
+
 @bot.message_handler(commands=['horoscopo'])
 def sign_handler(message):
     text = "Cual es tu signo?\nElige uno: *Aries*, *Taurus*, *Gemini*, *Cancer,* *Leo*, *Virgo*, *Libra*, *Scorpio*, *Sagittarius*, *Capricorn*, *Aquarius*, and *Pisces*."

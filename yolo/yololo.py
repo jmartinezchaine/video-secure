@@ -2,23 +2,27 @@ import numpy as np
 import cv2
 import queue
 from skimage.metrics import mean_squared_error as ssim
+import ultralytics
 from ultralytics import YOLO
+import torch
 from datetime import datetime
 import os
 from telegram import chat
 import time
 import atexit
 
+ultralytics.checks()
+print(f"Iniciando YOLO, si el valor es False se utilizará CPU, si es TRUE usara GPU:  ", torch.cuda.is_available())
 client = chat.createClient()
 yolo_list = ['person', 'cat', 'dog', 'car', 'motorbike', 'bicycle']
 yolo_on = True
 modelo = 'yolov8s' #nano model
 testing = False
 thresh = 3000 #Determines the amount of motion required to start recording. Higher values decrease sensitivity to help reduce false positives. Default 350, max 10000."
-tail_length = 8 # Number of seconds without motion required to stop recording. Raise this value if recordings are stopping too early. Default 8, max 30.
+tail_length = 3 # Number of seconds without motion required to stop recording. Raise this value if recordings are stopping too early. Default 8, max 30.
 auto_delete = True
 fps = 10
-start_frames =3# entre 1 y 30  Number of consecutive frames with motion required to start recording. Raising this might help if there's too many false positive recordings, especially with a high frame rate stream of 60 FPS. Default 3, max 30.
+start_frames =2# entre 1 y 30  Number of consecutive frames with motion required to start recording. Raising this might help if there's too many false positive recordings, especially with a high frame rate stream of 60 FPS. Default 3, max 30.
 recording = False
 activity_count = 0
 yolo_count = 0
@@ -124,6 +128,7 @@ def getImage_with_ia(frame):
     global first
     # primera vez
     overlay = frame
+    imagen_path = ''
     if first:
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         if gray.shape[1]/frame.shape[0] > 1.55:
@@ -204,18 +209,9 @@ def getImage_with_ia(frame):
                 if activity_count >= tail_length:
                     filedate = datetime.now().strftime('%H-%M-%S')
                     if not testing:
-                        #ffmpeg_copy.terminate()
-                        #ffmpeg_thread.join()
-                        ffmpeg_copy = 0
                         print(filedate + " recording stopped")
-                        # If auto_delete argument was provided, delete recording if total
-                        # length is equal to the tail_length value, indicating a false positive
-                        #if auto_delete:
-                            #recorded_file = cv2.VideoCapture(filename)
-                            #recorded_frames = recorded_file.get(cv2.CAP_PROP_FRAME_COUNT)
-                            #if recorded_frames < tail_length + (fps/2) and os.path.isfile(filename):
-                                #os.remove(filename)
-                                #print(filename + " was auto-deleted")
+                        os.remove(imagen_path)
+                        print(imagen_path + " was auto-deleted")
                     else:
                         print(filedate + " recording stopped - Testing mode")
                     recording = False

@@ -6,7 +6,7 @@ import cv2
 import numpy as np
 from flask import Flask, render_template, send_from_directory
 from flask_socketio import SocketIO, emit
-from yolo_rtsp_security_cam import yololo
+from yolo import yololo
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "esto_es_un_secreto"
